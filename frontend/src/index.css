@@ -228,3 +228,114 @@ body {
   display: inline-block;
   animation: pulseDot 2s infinite ease-in-out;
 }
+
+/* Modal dark theme & blur */
+.modal-backdrop.show {
+  opacity: 0.75;
+  backdrop-filter: blur(8px);
+}
+
+.modal-content {
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  color: var(--text-main);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+}
+
+.modal-header {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem 1.5rem;
+}
+
+.modal-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem 1.5rem;
+}
+
+/* Dark Theme Form Controls */
+.form-control, .form-select {
+  background-color: #1e293b;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #f8fafc;
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.9rem;
+}
+
+.form-control:focus, .form-select:focus {
+  background-color: #1e293b;
+  border-color: #6366f1;
+  color: #ffffff;
+  box-shadow: 0 0 0 0.25rem rgba(99, 102, 241, 0.25);
+}
+
+.form-control::placeholder {
+  color: #64748b;
+}
+
+.form-control:disabled, .form-select:disabled {
+  background-color: #0f172a;
+  color: #94a3b8;
+  opacity: 0.8;
+}
+
+.form-label {
+  color: #cbd5e1;
+  font-weight: 500;
+  font-size: 0.875rem;
+  margin-bottom: 0.4rem;
+}
+
+/* Soft danger badge */
+.badge-soft-danger {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+/* Action button styles */
+.btn-action-icon {
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.03);
+  color: #94a3b8;
+  transition: all 0.2s ease;
+}
+
+.btn-action-icon:hover {
+  background: rgba(99, 102, 241, 0.15);
+  color: #818cf8;
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.btn-action-icon.btn-delete:hover {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* Interactive Status Select inside Table */
+.status-select-sm {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+/* Toast alert notification container */
+.toast-container-custom {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 2000;
+  min-width: 320px;
+  max-width: 440px;
+}
+

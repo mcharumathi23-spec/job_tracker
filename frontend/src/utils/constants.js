@@ -1,12 +1,22 @@
 /**
- * Mini JobTrack Constants
+ * Mini JobTrack Constants matching backend JobStatus enum.
  */
 export const APPLICATION_STATUS = {
-  WISHLIST: { label: 'Wishlist', color: 'secondary', badgeClass: 'bg-secondary' },
-  APPLIED: { label: 'Applied', color: 'primary', badgeClass: 'bg-primary' },
-  INTERVIEWING: { label: 'Interviewing', color: 'warning', badgeClass: 'bg-warning text-dark' },
-  OFFER: { label: 'Offer Received', color: 'success', badgeClass: 'bg-success' },
-  REJECTED: { label: 'Rejected', color: 'danger', badgeClass: 'bg-danger' },
+  SAVED: { label: 'Saved', color: '#64748b', badgeClass: 'badge-soft-secondary' },
+  APPLIED: { label: 'Applied', color: '#6366f1', badgeClass: 'badge-soft-primary' },
+  INTERVIEW: { label: 'Interview', color: '#f59e0b', badgeClass: 'badge-soft-warning' },
+  OFFER: { label: 'Offer Received', color: '#10b981', badgeClass: 'badge-soft-success' },
+  REJECTED: { label: 'Rejected', color: '#ef4444', badgeClass: 'badge-soft-danger' },
+  WITHDRAWN: { label: 'Withdrawn', color: '#94a3b8', badgeClass: 'badge-soft-secondary' },
 };
 
-export const JOB_TYPES = ['Full-Time', 'Part-Time', 'Contract', 'Remote', 'Hybrid'];
+export const STATUS_OPTIONS = [
+  { value: 'SAVED', label: 'Saved' },
+  { value: 'APPLIED', label: 'Applied' },
+  { value: 'INTERVIEW', label: 'Interview' },
+  { value: 'OFFER', label: 'Offer Received' },
+  { value: 'REJECTED', label: 'Rejected' },
+  { value: 'WITHDRAWN', label: 'Withdrawn' },
+];
+
+export const JOB_LOCATIONS = ['Remote', 'Hybrid', 'On-site'];
