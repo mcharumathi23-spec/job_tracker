@@ -55,9 +55,9 @@ export function AuthProvider({ children }) {
     return data;
   };
 
-  const register = async (name, email, password) => {
-    const data = await authService.register(name, email, password);
-    setToken(data.token);
+  const register = async (name, email, password, confirmPassword) => {
+    const data = await authService.register(name, email, password, confirmPassword);
+    setToken(data.token || data.accessToken);
     setUser({
       id: data.id,
       name: data.name,
@@ -66,8 +66,8 @@ export function AuthProvider({ children }) {
     return data;
   };
 
-  const logout = () => {
-    authService.logout();
+  const logout = async () => {
+    await authService.logout();
     setUser(null);
     setToken(null);
   };

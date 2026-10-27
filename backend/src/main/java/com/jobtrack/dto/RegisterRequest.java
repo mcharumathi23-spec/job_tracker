@@ -19,8 +19,11 @@ public class RegisterRequest {
     private String email;
 
     @NotBlank(message = "Password is required")
-    @Size(min = 6, max = 50, message = "Password must be at least 6 characters")
+    @Size(min = 8, max = 50, message = "Password must be at least 8 characters")
     private String password;
+
+    @NotBlank(message = "Password confirmation is required")
+    private String confirmPassword;
 
     public RegisterRequest() {
     }
@@ -29,6 +32,14 @@ public class RegisterRequest {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.confirmPassword = password;
+    }
+
+    public RegisterRequest(String name, String email, String password, String confirmPassword) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
     }
 
     public String getName() {
@@ -53,5 +64,13 @@ public class RegisterRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }

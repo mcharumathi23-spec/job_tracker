@@ -27,8 +27,8 @@ export default function RegisterPage({ onNavigateLogin }) {
 
     if (!password) {
       errors.password = 'Password is required';
-    } else if (password.length < 6) {
-      errors.password = 'Password must be at least 6 characters';
+    } else if (password.length < 8) {
+      errors.password = 'Password must be at least 8 characters';
     }
 
     if (!confirmPassword) {
@@ -49,7 +49,7 @@ export default function RegisterPage({ onNavigateLogin }) {
 
     setLoading(true);
     try {
-      await register(name.trim(), email.trim(), password);
+      await register(name.trim(), email.trim(), password, confirmPassword);
       // Navigation to dashboard occurs automatically via AuthContext
     } catch (err) {
       const msg = err.response?.data?.message || err.message || 'Registration failed. Please try again.';
@@ -141,7 +141,7 @@ export default function RegisterPage({ onNavigateLogin }) {
                     id="reg-password"
                     type={showPassword ? 'text' : 'password'}
                     className={`form-control pe-5 ${fieldErrors.password ? 'is-invalid border-danger' : ''}`}
-                    placeholder="At least 6 characters"
+                    placeholder="At least 8 characters"
                     value={password}
                     onChange={(e) => {
                       setPassword(e.target.value);

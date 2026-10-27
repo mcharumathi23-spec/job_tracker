@@ -48,6 +48,10 @@ public class AuthServiceImpl implements AuthService {
         String normalizedEmail = request.getEmail().trim().toLowerCase();
         log.info("Attempting registration for email: {}", normalizedEmail);
 
+        if (request.getConfirmPassword() != null && !request.getPassword().equals(request.getConfirmPassword())) {
+            throw new IllegalArgumentException("Passwords do not match");
+        }
+
         if (userRepository.existsByEmail(normalizedEmail)) {
             throw new IllegalArgumentException("Email is already registered: " + normalizedEmail);
         }

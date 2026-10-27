@@ -7,10 +7,16 @@ export const authService = {
   /**
    * Register a new user account.
    */
-  async register(name, email, password) {
-    const response = await apiClient.post('/auth/register', { name, email, password });
-    if (response.data && response.data.token) {
-      localStorage.setItem('token', response.data.token);
+  async register(name, email, password, confirmPassword) {
+    const response = await apiClient.post('/auth/register', {
+      name,
+      email,
+      password,
+      confirmPassword: confirmPassword || password,
+    });
+    if (response.data && (response.data.token || response.data.accessToken)) {
+      const token = response.data.token || response.data.accessToken;
+      localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify({
         id: response.data.id,
         name: response.data.name,
@@ -25,8 +31,9 @@ export const authService = {
    */
   async login(email, password) {
     const response = await apiClient.post('/auth/login', { email, password });
-    if (response.data && response.data.token) {
-      localStorage.setItem('token', response.data.token);
+    if (response.data && (response.data.token || response.data.accessToken)) {
+      const token = response.data.token || response.data.accessToken;
+      localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify({
         id: response.data.id,
         name: response.data.name,
@@ -51,10 +58,16 @@ export const authService = {
   /**
    * Log out the user and clear client-side state.
    */
-  logout() {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    window.dispatchEvent(new Event('auth:logout'));
+  async logout() {
+    try {
+      await apiClient.post('/auth/logout');
+    } catch {
+      // Ignore network failures on logout
+    } finally {
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      window.dispatchEvent(new Event('auth:logout'));
+    }
   },
 
   /**

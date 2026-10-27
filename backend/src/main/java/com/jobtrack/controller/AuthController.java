@@ -68,4 +68,14 @@ public class AuthController {
         UserResponse response = authService.getCurrentUser(userDetails.getUsername());
         return ResponseEntity.ok(response);
     }
+
+    /**
+     * Endpoint for user logout (clearing client state).
+     *
+     * @return success confirmation
+     */
+    @PostMapping("/logout")
+    public ResponseEntity<java.util.Map<String, String>> logout() {
+        return ResponseEntity.ok(java.util.Map.of("message", "User logged out successfully"));
+    }
 }

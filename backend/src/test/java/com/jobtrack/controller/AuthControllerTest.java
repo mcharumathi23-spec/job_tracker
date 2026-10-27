@@ -94,4 +94,25 @@ class AuthControllerTest {
                 .andExpect(jsonPath("$.name").value("Charu"))
                 .andExpect(jsonPath("$.email").value("charu@example.com"));
     }
+
+    @Test
+    @DisplayName("POST /api/auth/register - Should fail with 400 when password is under 8 characters")
+    void shouldFailRegisterWhenPasswordTooShort() throws Exception {
+        RegisterRequest request = new RegisterRequest("Charu", "charu@example.com", "short");
+
+        mockMvc.perform(post("/api/auth/register")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.status").value(400))
+                .andExpect(jsonPath("$.validationErrors.password").exists());
+    }
+
+    @Test
+    @DisplayName("POST /api/auth/logout - Should return 200 OK")
+    void shouldLogoutSuccessfully() throws Exception {
+        mockMvc.perform(post("/api/auth/logout"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message").value("User logged out successfully"));
+    }
 }
